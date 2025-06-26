@@ -5,6 +5,8 @@ function FinanceChatbot() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+
   const askAI = async () => {
     if (!userInput.trim()) return;
 
@@ -17,7 +19,7 @@ function FinanceChatbot() {
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer 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',
+          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
